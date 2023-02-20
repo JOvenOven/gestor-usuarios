@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import useFormulario from './hooks/useFormulario'
+import Input from './components/Input'
+import Card from './components/Card'
+import Container from './components/Container'
+import Button from './components/Button'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [formulario, handleChange] = useFormulario({ 
+    name: '', 
+    email: '',
+    lastname: '',
+  })
+
+  console.log(formulario);
+  return(
+    <Container>
+      <Card>
+        <div style={{padding: 20}} >
+          <form>
+            <Input 
+              label="Nombre"
+              name="name" 
+              value={formulario.name} 
+              onChange={handleChange} 
+            />
+            <Input 
+              label="Apellido"
+              name="lastname" 
+              value={formulario.lastname} 
+              onChange={handleChange} 
+            />
+            <Input 
+              label="Correo"
+              name="email" 
+              value={formulario.email} 
+              onChange={handleChange} 
+            />
+            <Button>Enviar</Button>
+          </form>
+        </div>
+      </Card>
+    </Container>
+  )
 }
 
 export default App;
